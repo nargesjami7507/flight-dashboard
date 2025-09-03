@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>داشبورد پرواز</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+
+    
+    <aside class="sidebar" aria-label="ناوبری">
+      <div class="profile">
+        <div class="avatar">N</div>
+        <div class="profile-info">
+          <h3>Nargesjami</h3>
+          <p>nargesjami@gmail.com</p>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="اصلی">
+        <ul>
+          <li><button class="icon-btn" data-panel="panel-dashboard" onclick="togglePanel('panel-dashboard')">🏠 داشبورد</button></li>
+          <li><button class="icon-btn" data-panel="panel-flights" onclick="togglePanel('panel-flights')">✈️ پروازها</button></li>
+          <li><button class="icon-btn" data-panel="panel-wallet" onclick="togglePanel('panel-wallet')">💼 کیف‌پول</button></li>
+          <li><button class="icon-btn" data-panel="panel-reports" onclick="togglePanel('panel-reports')">📊 گزارش‌ها</button></li>
+          <li><button class="icon-btn" data-panel="panel-settings" onclick="togglePanel('panel-settings')">⚙️ تنظیمات</button></li>
+        </ul>
+      </nav>
+
+      
+      <div class="side-panels">
+        <div id="panel-dashboard" class="side-panel">
+          <h4>میانبرها</h4>
+          <ul class="mini-links">
+            <li><a href="index.html">خانه</a></li>
+            <li><a href="flights.html">جستجوی پرواز</a></li>
+            <li><a href="ticket.html">بلیط من</a></li>
+          </ul>
+        </div>
+        <div id="panel-flights" class="side-panel">
+          <h4>پروازها</h4>
+          <p>جستجو، فیلتر، و رزرو پرواز.</p>
+        </div>
+        <div id="panel-wallet" class="side-panel">
+          <h4>کیف‌پول</h4>
+          <p>مدیریت تراکنش‌ها و موجودی.</p>
+        </div>
+        <div id="panel-reports" class="side-panel">
+          <h4>گزارش‌ها</h4>
+          <p>گزارش‌های ماهانه و نمودارها.</p>
+        </div>
+        <div id="panel-settings" class="side-panel">
+          <h4>تنظیمات</h4>
+          <p>حساب کاربری و ترجیحات.</p>
+        </div>
+      </div>
+    </aside>
+
+    
+    <main class="main">
+      
+      <header class="top-area">
+        <div class="cards-row">
+          <div class="card small-card">
+            <h6>بوئینگ-787</h6>
+            <p class="price">$540</p>
+          </div>
+          <div class="card small-card">
+            <h6>ایرباس-811</h6>
+            <p class="price">$620</p>
+          </div>
+          <div class="card small-card">
+            <h6>کل پروازها</h6>
+            <p class="price">850</p>
+          </div>
+        </div>
+
+        <div class="hero">
+          
+          <div class="hero-fallback">
+            <div class="hero-title">رزرو آسان و سریع پرواز</div>
+            <div class="hero-sub">Plan • Book • Track</div>
+          </div>
+        </div>
+      </header>
+
+     
+      <section class="content-area">
+        <div class="left-column">
+
+          
+          <section class="card last-trips">
+            <div class="section-head">
+              <h3>آخرین سفرها</h3>
+              <a href="flights.html" class="link">همه</a>
+            </div>
+            <div class="trip-list">
+              <article class="trip-item">
+                <div class="trip-avatar">H</div>
+                <div class="info">
+                  <strong>Helen</strong>
+                  <small>helen@gmail.com</small>
+                </div>
+                <div class="meta">
+                  <span class="airline">Qatar</span>
+                  <span class="badge">۵ نفر</span>
+                  <span class="amount">$56</span>
+                </div>
+              </article>
+
+              <article class="trip-item">
+                <div class="trip-avatar">A</div>
+                <div class="info">
+                  <strong>Asra</strong>
+                  <small>asra@gmail.com</small>
+                </div>
+                <div class="meta">
+                  <span class="airline">Emirates</span>
+                  <span class="badge">۲ نفر</span>
+                  <span class="amount">$70</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          
+          <section class="charts-grid">
+            <div class="card chart-card">
+              <div class="section-head"><h3>آمار ماهانه</h3></div>
+              <div class="chart-wrap">
+                <canvas id="monthlyChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card chart-card">
+              <div class="section-head"><h3>سهم خطوط هوایی</h3></div>
+              <div class="chart-wrap">
+                <canvas id="shareChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <aside class="right-column">
+          
+          <section class="card ticket-search">
+            <h3>بلیط‌های من</h3>
+            <form id="search-form" onsubmit="goToFlights(); return false;">
+              <label>مبدا
+                <input type="text" name="from" placeholder=" هرات">
+              </label>
+              <label>مقصد
+                <input type="text" name="to" placeholder=" کابل">
+              </label>
+              <label>تاریخ
+                <input type="date" name="date">
+              </label>
+              <label>کلاس
+                <select name="cls">
+                  <option value="economy">Economy</option>
+                  <option value="business">Business</option>
+                </select>
+              </label>
+              <button type="submit" class="btn primary">جستجوی پرواز</button>
+            </form>
+          </section>
+
+         
+          <section class="card sample-ticket">
+            <h4>پرواز شما </h4>
+            <div class="ticket-mini">
+              <div class="row">
+                <span>DXB → LHE</span>
+                <span class="price">$180</span>
+              </div>
+              <div class="row sub">
+                <span>10:30 — 12:30</span>
+                <span>Economy</span>
+              </div>
+              <a class="btn accent" href="ticket.html">نمایش بلیت</a>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+    
+      <footer class="bottom-nav" role="contentinfo">
+        <nav>
+          <ul>
+            <li><a href="index.html">🏠 خانه</a></li>
+            <li><a href="flights.html">🔎 پروازها</a></li>
+            <li><a href="ticket.html">🎫 بلیط</a></li>
+            <li><a href="#">🔔 اعلان‌ها</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

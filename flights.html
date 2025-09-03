@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>پروازها</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar">N</div>
+        <div class="profile-info"><h3>Nargesjami</h3></div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a class="side-link" href="index.html">داشبورد</a></li>
+          <li><a class="side-link active" href="flights.html">پروازها</a></li>
+          <li><a class="side-link" href="ticket.html">بلیط من</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="top-area small">
+        <h2>جستجو و لیست پروازها</h2>
+      </header>
+
+     
+      <section class="card filters">
+        <form id="filters-form" onsubmit="applyFilters(); return false;">
+          <div class="grid-4">
+            <label>از
+              <input type="text" id="f-from" placeholder=" هرات">
+            </label>
+            <label>به
+              <input type="text" id="f-to" placeholder="کابل">
+            </label>
+            <label>تاریخ
+              <input type="date" id="f-date">
+            </label>
+            <label>کلاس
+              <select id="f-class">
+                <option value="">همه</option>
+                <option value="Economy">Economy</option>
+                <option value="Business">Business</option>
+              </select>
+            </label>
+          </div>
+          <div class="filters-actions">
+            <button type="submit" class="btn primary">اعمال فیلتر</button>
+            <button type="button" class="btn" onclick="resetFilters()">بازنشانی</button>
+          </div>
+        </form>
+      </section>
+
+      
+      <section id="results" class="results-grid">
+        
+      </section>
+
+      <footer class="bottom-nav">
+        <nav>
+          <ul>
+            <li><a href="index.html">🏠 خانه</a></li>
+            <li><a href="flights.html" class="active">🔎 پروازها</a></li>
+            <li><a href="ticket.html">🎫 بلیط</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
